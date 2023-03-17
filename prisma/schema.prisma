@@ -15,3 +15,8 @@ model test {
   user    String @db.VarChar(10)
   content String @db.VarChar(200)
 }
+
+model user {
+  id       Int      @id @default(autoincrement())
+  email    String   @db.VarChar(50)
+}

@@ -16,7 +16,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
-    return redirect('/api/auth/signin')
+    redirect('/api/auth/signin')
   }
 
   const test = await getData()
