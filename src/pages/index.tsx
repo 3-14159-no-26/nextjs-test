@@ -6,8 +6,6 @@ import { format } from 'date-fns'
 import Item from '@/components/Item'
 
 export default function Home({ data }: { data: test[] }) {
-  console.log(data)
-
   return (
     <div className="layout">
       <div className="table">
