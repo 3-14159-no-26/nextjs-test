@@ -7,7 +7,7 @@ export default function Item(item: test) {
 
     React.useEffect(() => {
         setDate(format(new Date(item.time), 'yyyy-MM-dd HH:mm:ss'))
-    }, [item.id])
+    }, [item.time])
 
     return (
         <tr>
