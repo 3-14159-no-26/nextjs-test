@@ -5,6 +5,8 @@ import { getSession } from 'next-auth/react'
 import { format } from 'date-fns'
 
 export default function Home({ data }: { data: test[] }) {
+  console.log(data)
+
   return (
     <div className="layout">
       <div className="table">
@@ -17,13 +19,13 @@ export default function Home({ data }: { data: test[] }) {
             </tr>
           </thead>
           <tbody>
-            {data?.map((item) => (
+            {/* {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.value + 'Ω'}</td>
                 <td>{format(new Date(item.time), 'yyyy-MM-dd HH:mm:ss')}</td>
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>
