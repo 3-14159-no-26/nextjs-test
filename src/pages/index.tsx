@@ -12,8 +12,8 @@ export default function Home({ data }: { data: test[] }) {
           <thead>
             <tr>
               <th>id</th>
-              <th>user</th>
-              <th>content</th>
+              <th>值</th>
+              <th>時間</th>
             </tr>
           </thead>
           <tbody>
