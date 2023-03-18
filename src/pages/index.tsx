@@ -1,6 +1,7 @@
 import { getSession } from 'next-auth/react'
 import { GetServerSideProps } from 'next'
 import prisma from '@/lib/prisma'
+import { format } from 'date-fns';
 import { test } from '@prisma/client'
 
 export default function Home({ data }: { data: test[] }) {
@@ -20,8 +21,8 @@ export default function Home({ data }: { data: test[] }) {
             {data.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.user}</td>
-                <td>{item.content}</td>
+                <td>{item.value + "Ω"}</td>
+                <td>{format(new Date(item.time), 'yyyy-MM-dd HH:mm:ss')}</td>
               </tr>
             ))}
           </tbody>
@@ -42,8 +43,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
-  const data = await prisma.$queryRaw`SELECT * FROM test` as test[]
-
+  let data = await prisma.$queryRaw`SELECT * FROM test` as test[]
+  data = JSON.parse(JSON.stringify(data))
   return {
     props: {
       data

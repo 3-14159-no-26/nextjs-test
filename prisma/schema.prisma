@@ -11,12 +11,12 @@ datasource db {
 }
 
 model test {
-  id      Int    @id @default(autoincrement())
-  user    String @db.VarChar(10)
-  content String @db.VarChar(200)
+  id    Int      @id @default(autoincrement())
+  value String   @db.VarChar(10)
+  time  DateTime @default(now()) @db.DateTime
 }
 
 model user {
-  id       Int      @id @default(autoincrement())
-  email    String   @db.VarChar(50)
+  id    Int    @id @default(autoincrement())
+  email String @db.VarChar(50)
 }
