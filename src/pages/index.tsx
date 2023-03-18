@@ -19,7 +19,7 @@ export default function Home({ data }: { data: test[] }) {
           </thead>
           <tbody>
             {data.map((item) => (
-              <Item {...item} />
+              <Item key={item.id} {...item} />
             ))}
           </tbody>
         </table>
