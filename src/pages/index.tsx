@@ -1,25 +1,9 @@
+import { getSession } from 'next-auth/react'
+import { GetServerSideProps } from 'next'
 import prisma from '@/lib/prisma'
-import { authOptions } from '@/lib/auth'
-import { getServerSession } from 'next-auth/next'
-import { redirect } from 'next/navigation'
-import './style.css'
 import { test } from '@prisma/client'
 
-async function getData() {
-  // const data = await prisma.test.findMany()
-  const data = await prisma.$queryRaw`SELECT * FROM test` as test[]
-
-  return data
-}
-
-export default async function Home() {
-  const session = await getServerSession(authOptions)
-
-  if (!session) {
-    redirect('/api/auth/signin')
-  }
-
-  const test = await getData()
+export default function Home({ data }: { data: test[] }) {
 
   return (
     <div className="layout">
@@ -33,7 +17,7 @@ export default async function Home() {
             </tr>
           </thead>
           <tbody>
-            {test.map((item) => (
+            {data.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.user}</td>
@@ -45,4 +29,24 @@ export default async function Home() {
       </div>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { req } = ctx
+  const session = await getSession({ req })
+
+  if (!session) {
+    return {
+      redirect: { destination: '/api/auth/signin' },
+      props: {},
+    }
+  }
+
+  const data = await prisma.$queryRaw`SELECT * FROM test` as test[]
+
+  return {
+    props: {
+      data
+    },
+  }
 }

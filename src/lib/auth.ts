@@ -17,13 +17,15 @@ export const authOptions: NextAuthOptions = {
       // 如果登入方式是 Google
       if (account.provider === 'google') {
         // 找第一個 email 匹配的紀錄
+        // const test = await prisma.$queryRaw`SELECT * FROM "User" WHERE email = ${profile.email}`
+        // console.log("SQL", test)
         const verified = await prisma.user.findFirst({
           // 條件
           where: {
             email: profile.email
           }
         })
-
+        console.log("Prisma", verified)
         // 返回布林值
         return !!verified
       }
