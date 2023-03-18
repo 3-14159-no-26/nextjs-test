@@ -10,7 +10,7 @@ export default function Item(item: test) {
     }, [])
 
     return (
-        <tr key={item.id}>
+        <tr>
             <td>{item.id}</td>
             <td>{item.value + 'Ω'}</td>
             <td>{date}</td>
