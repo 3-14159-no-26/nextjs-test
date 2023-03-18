@@ -9,12 +9,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             const data = await prisma.$queryRaw`SELECT * FROM test`
             return res.status(200).json(data)
         }
-        
-        const data = await prisma.$queryRaw`SELECT * FROM test WHERE id = ${id}`
 
-        if (!!data) {
+        const data =
+            (await prisma.$queryRaw`SELECT * FROM test WHERE id = ${id}`) as test[]
+        console.log('data', data)
+        if (data.length === 0) {
             return res.status(404).json({
-                message: '資料不存在啦幹!'
+                message: '資料不存在啦幹!',
             })
         }
 
