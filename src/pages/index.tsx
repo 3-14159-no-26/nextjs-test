@@ -42,8 +42,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
-  let data = (await prisma.$queryRaw`SELECT * FROM test`) as test[]
-  data = JSON.parse(JSON.stringify(data))
+  const data = JSON.parse(JSON.stringify(await prisma.$queryRaw`SELECT * FROM test` as test[]))
+  // let data = (await prisma.$queryRaw`SELECT * FROM test`) as test[]
+  // data = JSON.parse(JSON.stringify(data))
 
   return {
     props: {
