@@ -12,4 +12,3 @@ export default function App({
     </SessionProvider>
   )
 }
-// 這部分是在做甚麼？
