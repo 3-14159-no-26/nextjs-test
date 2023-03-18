@@ -17,7 +17,7 @@ export default function Home({ data }: { data: test[] }) {
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.value + 'Ω'}</td>
@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   let data = (await prisma.$queryRaw`SELECT * FROM test`) as test[]
   data = JSON.parse(JSON.stringify(data))
-  
+
   return {
     props: {
       data,
