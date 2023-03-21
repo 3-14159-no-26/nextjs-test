@@ -3,7 +3,6 @@ import { test } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-    const { id } = req.query
     if (req.method === 'POST') {
         const { token, value } = req.body
         if (token == process.env.API_SQL_TOKEN) {
