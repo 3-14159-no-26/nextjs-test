@@ -13,7 +13,7 @@ export default function Home() {
             setData(data)
         }
         fetchData()
-    }, [data])
+    }, [])
 
     return (
         <div className="layout">
