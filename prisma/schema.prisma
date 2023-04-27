@@ -16,6 +16,12 @@ model test {
   time  DateTime @default(now()) @db.DateTime
 }
 
+model voice {
+  id    Int      @id @default(autoincrement())
+  value String   @db.Text
+  time  DateTime @default(now()) @db.DateTime
+}
+
 model user {
   id    Int    @id @default(autoincrement())
   email String @db.VarChar(50)

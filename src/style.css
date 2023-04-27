@@ -17,7 +17,8 @@ table {
 thead th {
     border-bottom: 1px solid rgb(255, 255, 255);
 }
-td,th {
+td,
+th {
     padding: 10px;
 }
 td:first-child {
@@ -48,4 +49,18 @@ button {
 }
 svg {
     padding: 10px 10px 10px 0;
+}
+
+.message {
+    background-color: rgb(146, 146, 146);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
