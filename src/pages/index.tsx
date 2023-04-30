@@ -1,7 +1,6 @@
-import { test } from '@prisma/client'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import Item from '@/components/Item'
+import Time from '@/components/Time'
 import React from 'react'
 import { useQuery } from 'react-query'
 
@@ -28,7 +27,13 @@ export default function Home() {
                     </thead>
                     <tbody>
                         {data.map((item) => (
-                            <Item key={item.id} {...item} />
+                            <tr key={item.id}>
+                                <td>{item.id}</td>
+                                <td>{item.value + 'Ω'}</td>
+                                <td>
+                                    <Time utctime={item.time as string} />
+                                </td>
+                            </tr>
                         ))}
                     </tbody>
                 </table>
