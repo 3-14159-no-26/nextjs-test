@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
+import NavBar from '@/components/NavBar'
 import Time from '@/components/Time'
 
 const Voice = () => {
@@ -21,18 +22,21 @@ const Voice = () => {
     if (isLoading) return <div>Loading...</div>
     if (error) return <div>Error fetching data</div>
     return (
-        <div className="layout">
-            <div className="message">
-                {data.map((item) => (
-                    <div key={item.id}>
-                        <div className="content">
-                            <div className="">{item.message}</div>
-                            <Time utctime={item.time as string} />
+        <>
+            <NavBar />
+            <div className="layout">
+                <div className="message">
+                    {data.map((item) => (
+                        <div key={item.id}>
+                            <div className="content">
+                                <div className="">{item.message}</div>
+                                <Time utctime={item.time as string} />
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

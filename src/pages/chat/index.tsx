@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
+import NavBar from '@/components/NavBar'
 
 const Chat = () => {
     const [messages, setMessages] = useState([])
@@ -36,7 +37,8 @@ const Chat = () => {
 
     return (
         <>
-            <div className="flex items-center justify-center h-screen">
+            <NavBar />
+            <div className="flex items-center justify-center">
                 <div className=" bg-slate-300 rounded-lg w-full p-10 m-20 relative">
                     <div className="title">
                         <div className="text-2xl font-bold">OpenAI Chat</div>

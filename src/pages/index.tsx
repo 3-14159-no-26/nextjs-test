@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
+import NavBar from '@/components/NavBar'
 import Time from '@/components/Time'
 import React from 'react'
 import { useQuery } from 'react-query'
@@ -15,30 +16,33 @@ export default function Home() {
     if (error) return <div>Error fetching data</div>
 
     return (
-        <div className="layout">
-            <div className="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>值</th>
-                            <th>時間</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((item) => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.value + 'Ω'}</td>
-                                <td>
-                                    <Time utctime={item.time as string} />
-                                </td>
+        <>
+            <NavBar />
+            <div className="layout">
+                <div className="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>值</th>
+                                <th>時間</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {data.map((item) => (
+                                <tr key={item.id}>
+                                    <td>{item.id}</td>
+                                    <td>{item.value + 'Ω'}</td>
+                                    <td>
+                                        <Time utctime={item.time as string} />
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
