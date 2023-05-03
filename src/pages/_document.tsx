@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
     return (
-        <Html lang="zh-Hant-TW">
+        <Html lang="zh-Hans-TW">
             <Head />
             <body>
                 <Main />
