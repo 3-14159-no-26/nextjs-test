@@ -5,7 +5,8 @@ import NavBar from '@/components/NavBar'
 import { IconSend, IconMicrophone } from '@tabler/icons-react'
 
 const Chat = () => {
-    const [value, setValue] = useState('')
+    const [voice, setVoice] = useState('')
+    const [voiceLoading, setVoiceLoading] = useState(false)
     const [loading, setLoading] = useState(false)
     const [messages, setMessages] = useState([])
     const [changes, setChanges] = useState(1)
@@ -41,8 +42,8 @@ const Chat = () => {
     }
 
     const voiceInput = () => {
-        console.log('voiceInput')
-
+        console.log('語音輸入')
+        setVoiceLoading(true)
         if (!('webkitSpeechRecognition' in window)) {
             alert('您的瀏覽器不支持語音輸入')
             return
@@ -61,8 +62,9 @@ const Chat = () => {
         recognition.onresult = (event) => {
             const transcript = event.results[0][0].transcript
             console.log('輸入的文本：', transcript)
-            setValue(transcript)
+            setVoice(transcript)
             inputRef.current.value = transcript
+            setVoiceLoading(false)
         }
 
         recognition.start()
@@ -160,7 +162,14 @@ const Chat = () => {
                             Powered by OpenAI & 唯一
                         </div>
                     </div>
-                    <p>語音辨識 {value}</p>
+                    {voiceLoading && (
+                        <div className="text-gray-400 py-2">語音輸入中...</div>
+                    )}
+                    {voice && !voiceLoading && (
+                        <div className="text-gray-400 py-2">
+                            語音輸入結果：{voice}
+                        </div>
+                    )}
                 </div>
             </div>
         </>
