@@ -4,12 +4,14 @@ import { getSession } from 'next-auth/react'
 import NavBar from '@/components/NavBar'
 
 const Chat = () => {
-    const [messages, setMessages] = useState([])
     const [input, setInput] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [messages, setMessages] = useState([])
     const [changes, setChanges] = useState(1)
 
     const send = async () => {
         console.log('input', input)
+        setLoading(true)
         const data = await fetch('/api/openai', {
             method: 'POST',
             headers: {
@@ -19,11 +21,14 @@ const Chat = () => {
         })
         const res = await data.json()
         // console.log('res', res)
-        setMessages([...messages, res.content])
+        setLoading(false)
+        setMessages([...messages, input, res.content])
         setInput('')
     }
 
     const handleKeyDown = (event) => {
+        // 如果是手機版，就不要做任何事情
+        if (window.innerWidth < 768) return
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault()
             send()
@@ -49,9 +54,14 @@ const Chat = () => {
                                 <div key={index} className="p-2 border-b">
                                     {message}
                                 </div>
-                                <br />
                             </>
                         ))}
+                        {input && (
+                            <div className="p-2 border-b input">{input}</div>
+                        )}
+                        {loading && (
+                            <div className="p-2 color-gray-400">Loading...</div>
+                        )}
                     </div>
                     <div className="flex justify-between">
                         <textarea
