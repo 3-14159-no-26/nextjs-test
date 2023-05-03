@@ -119,8 +119,11 @@ const Chat = () => {
             <NavBar />
             <div className="flex items-center justify-center">
                 <div className=" bg-slate-300 rounded-lg w-full p-10 mt-10 md:m-20 relative">
-                    <div className="title">
+                    <div className="title flex justify-between p-2 items-center">
                         <div className="text-2xl font-bold">OpenAI Chat</div>
+                        <div className="text-gray-400">
+                            請使用 Chrome 或是 Edge
+                        </div>
                     </div>
                     <div className="h-96 bg-white rounded-md mb-5 overflow-y-auto">
                         {messages.map((message, index) => (
