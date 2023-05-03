@@ -43,7 +43,7 @@ export default function Signin() {
                                     fill="#EB4335"
                                 />
                             </svg>
-                            Sign in with Google
+                            <span>使用 Google 帳號登入</span>
                         </div>
                     </button>
                 </div>
