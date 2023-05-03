@@ -31,6 +31,15 @@ export const authOptions: NextAuthOptions = {
 
             return true
         },
+        async redirect({ baseUrl, url }) {
+            // BUG: 神奇的錯誤
+            if (url !== 'undefined') {
+                if (url.startsWith('/')) return `${baseUrl}${url}`
+                else if (new URL(url).origin === baseUrl) return url
+
+                return baseUrl
+            }
+        },
     },
 
     pages: {
