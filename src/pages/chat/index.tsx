@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import NavBar from '@/components/NavBar'
+import { IconSend, IconMicrophone } from '@tabler/icons-react'
 
 const Chat = () => {
     const [value, setValue] = useState('')
@@ -113,17 +114,17 @@ const Chat = () => {
                             onKeyDown={handleKeyDown}
                         />
                         <button
-                            className="text-white bg-sky-700 p-2 rounded-md hover:bg-sky-500 w-1/5 h-full"
+                            className="text-white bg-sky-700 p-2 rounded-md hover:bg-sky-500 h-full"
                             onClick={send}
                         >
-                            傳送
+                            <IconSend size={25} />
                         </button>
                         {/* 語音輸入 */}
                         <button
-                            className="text-white bg-sky-700 p-2 rounded-md hover:bg-sky-500 w-1/5 h-full"
+                            className="text-white bg-sky-700 p-2 rounded-md hover:bg-sky-500 h-full"
                             onClick={voiceInput}
                         >
-                            語音
+                            <IconMicrophone size={25} />
                         </button>
 
                         <div className="absolute bottom-0 right-1 text-xs text-gray-400">
