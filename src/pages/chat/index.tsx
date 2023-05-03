@@ -9,7 +9,6 @@ const Chat = () => {
     const [loading, setLoading] = useState(false)
     const [messages, setMessages] = useState([])
     const [changes, setChanges] = useState(1)
-
     const inputRef = useRef(null)
     useEffect(() => {
         console.log(
@@ -48,8 +47,9 @@ const Chat = () => {
             alert('您的瀏覽器不支持語音輸入')
             return
         }
-        const recognition = new (window.SpeechRecognition ||
-            window.webkitSpeechRecognition)()
+        const recognition =
+            new (window as any).webkitSpeechRecognition() ||
+            (window as any).SpeechRecognition()
 
         // 設置語言為中文
         recognition.lang = 'zh-TW'
