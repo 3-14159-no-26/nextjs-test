@@ -15,7 +15,7 @@ export default function Signin() {
                         onClick={() =>
                             signIn('google', {
                                 redirect: true,
-                                callbackUrl: String(query.callbackUrl),
+                                callbackUrl: String(query.callbackUrl || '/'),
                             })
                         }
                     >
