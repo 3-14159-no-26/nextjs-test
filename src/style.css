@@ -68,7 +68,7 @@ td:last-child {
     justify-content: center;
     align-items: center;
 }
-svg {
+.google svg {
     padding: 10px 10px 10px 0;
 }
 
