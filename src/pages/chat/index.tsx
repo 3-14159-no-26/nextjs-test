@@ -93,7 +93,7 @@ const Chat = () => {
 
             //當最後一個都還沒找到時才設u.lang
             if (index + 1 === voices.length) {
-                msg.lang = 'zh-TW'
+                msg.lang = 'zh-CN'
             }
         }
         window.speechSynthesis.speak(msg)
