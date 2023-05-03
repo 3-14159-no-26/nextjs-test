@@ -70,10 +70,36 @@ const Chat = () => {
 
     const voiceOutput = (content) => {
         const msg = new SpeechSynthesisUtterance(content)
-        msg.lang = 'zh-TW'
+        // msg.lang = 'zh-TW'
+        const synth = window.speechSynthesis
+        let voices = synth.getVoices()
+
+        for (let index = 0; index < voices.length; index++) {
+            // console.log(voices[index].name)
+            if (
+                voices[index].name ==
+                'Microsoft Yunxi Online (Natural) - Chinese (Mainland)'
+            ) {
+                //HsiaoChen (Neural) - 曉臻 (MS Edge專用)
+                msg.voice = voices[index]
+                break
+            } else if (voices[index].name == 'Google 國語（臺灣）') {
+                //Chrome專用
+                msg.voice = voices[index]
+                break
+            } else {
+                //u.lang = 'zh-TW'; //這邊可能會有語音又被切回系統語音的問題
+            }
+
+            //當最後一個都還沒找到時才設u.lang
+            if (index + 1 === voices.length) {
+                msg.lang = 'zh-TW'
+            }
+        }
         window.speechSynthesis.speak(msg)
     }
 
+    // voiceOutput('歡迎使用語音輸入')
     const handleKeyDown = (event) => {
         // 如果是手機版，就不要做任何事情
         if (window.innerWidth < 768) return
