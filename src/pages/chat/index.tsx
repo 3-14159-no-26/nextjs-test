@@ -39,7 +39,7 @@ const Chat = () => {
         <>
             <NavBar />
             <div className="flex items-center justify-center">
-                <div className=" bg-slate-300 rounded-lg w-full p-10 m-20 relative">
+                <div className=" bg-slate-300 rounded-lg w-full p-10 mt-10 md:m-20 relative">
                     <div className="title">
                         <div className="text-2xl font-bold">OpenAI Chat</div>
                     </div>
