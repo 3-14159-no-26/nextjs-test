@@ -47,7 +47,8 @@ const Chat = () => {
             alert('您的瀏覽器不支持語音輸入')
             return
         }
-        const recognition = new window.webkitSpeechRecognition()
+        const recognition = new (window.SpeechRecognition ||
+            window.webkitSpeechRecognition)()
 
         // 設置語言為中文
         recognition.lang = 'zh-TW'
