@@ -12,6 +12,9 @@ const NavBar = () => {
                 <Link href="/voice">
                     <div className="text-white">語音</div>
                 </Link>
+                <Link href="/ph">
+                    <div className="text-white">PH值</div>
+                </Link>
             </div>
             <div className="flex items-center space-x-2">
                 <Link href="/api/auth/signout">

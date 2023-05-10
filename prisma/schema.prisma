@@ -10,6 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model user {
+  id    Int    @id @default(autoincrement())
+  email String @db.VarChar(50)
+}
+
 model test {
   id    Int      @id @default(autoincrement())
   value String   @db.VarChar(10)
@@ -22,7 +27,9 @@ model voice {
   time  DateTime @default(now()) @db.DateTime
 }
 
-model user {
-  id    Int    @id @default(autoincrement())
-  email String @db.VarChar(50)
+model ph {
+  id     Int      @id @default(autoincrement())
+  value  String   @db.Text
+  status String   @db.VarChar(2)
+  time   DateTime @default(now()) @db.DateTime
 }
