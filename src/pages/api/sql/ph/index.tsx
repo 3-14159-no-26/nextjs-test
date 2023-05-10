@@ -28,11 +28,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
         const { token, value } = req.body
         if (token == process.env.API_SQL_TOKEN) {
-            const data =
-                (await prisma.$queryRaw`INSERT INTO ph (value,status) VALUES (${value},${phValue(
-                    value
-                )})`) as ph[]
             const status = phValue(value)
+            const data =
+                (await prisma.$queryRaw`INSERT INTO ph (value,status) VALUES (${value},${status})`) as ph[]
+
             return res.status(200).json({ token, value, status })
         } else {
             return res.status(404).json({
