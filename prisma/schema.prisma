@@ -30,6 +30,6 @@ model voice {
 model ph {
   id     Int      @id @default(autoincrement())
   value  String   @db.Text
-  status String   @db.VarChar(3)
+  status String   @db.VarChar(4)
   time   DateTime @default(now()) @db.DateTime
 }
